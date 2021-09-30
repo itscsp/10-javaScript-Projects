@@ -1,0 +1,60 @@
+/* importing fot from google fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url("https://images.unsplash.com/photo-1562832135-14a35d25edef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1245&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width:100vw;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.heading{
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.heading .pro-heading{
+    color:#dd7331;
+}
+
+.container{
+    display: flex;
+    height: 100vh;
+    width: 50vw;
+    justify-content: space-between;
+    align-items: center;
+    align-items: center;
+    vertical-align: center;
+    flex-wrap: wrap ;
+}
+
+.bg-text{
+    font-size: 6rem;
+    line-height: 1;
+    margin: 0 2rem;
+}
+
+.container span{
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+}
