@@ -3,11 +3,15 @@ const daysEl = document.getElementById('days');
 const hoursEl = document.getElementById('hours');
 const minsEl = document.getElementById('mins');
 const secondsEl = document.getElementById('seconds');
+const data = document.getElementById("fname");
 
 
 
 function countdown() {
-    const newYears = "1 Jan 2022";
+    if (data.value < '01 jan 2022'){
+        data.value = '01 Jan 2022'
+    }
+    const newYears = data.value;
 
 
     const newYearsDate = new Date(newYears);
