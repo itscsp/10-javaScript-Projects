@@ -144,3 +144,16 @@ input:focus, textarea:focus, select:focus{
     font-weight: bold;
     border-radius:  50% 0px  0px 50%;
 }
+
+.meal-body{
+    padding: 10px 0px;
+}
+
+.fa-heart{
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.meal-body h4{
+    margin:0;
+}

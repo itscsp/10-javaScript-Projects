@@ -24,7 +24,7 @@ const quizData = [
           b: 'travling',
           c: 'Coding',
           d: 'SEX',
-          correct: 'c'
+          correct: 'C'
     }
   ]
 
@@ -43,15 +43,14 @@ const submitBtn = document.getElementById('submitbtn')
 let currentQuetion = 0;
 let score  = 0;
 
-
-loadQuetion();//initialize load
-
 function loadQuetion(){
 
   deselectAnswer();
 
   const currentQuizData = quizData[currentQuetion];
 
+
+  loadQuetion();//initialize load
   questionElements.innerText = currentQuizData.question;
 
   a_text.innerText  = currentQuizData.a;

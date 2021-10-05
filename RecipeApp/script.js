@@ -1,111 +1,123 @@
-const quizData = [
-    {
-      id: 1,
-      question: "How to delete a directory in Linux?",
-        a: '10',
-        b: '17',
-        c: '26',
-        d: '110',
-        correct: 'c'
-    },
-    {
-        id: 2,
-        question: "Favirate Programing language",
-          a: 'Java',
-          b: 'JavaScrip',
-          c: 'Python',
-          d: 'C++',
-          correct: 'b'
-    },
-    {
-        id: 3,
-        question: "What do Love Do",
-          a: 'Play',
-          b: 'travling',
-          c: 'Coding',
-          d: 'SEX',
-          correct: 'c'
-    }
-  ]
+
+getRandomMeal();
+
+fetchFavMeals();
 
 
-const quiz = document.getElementById('quiz');
-const answerEls = document.querySelectorAll(".answer")
-const questionElements = document.getElementById('question')
+// TO GET RANDOM MEAL DATA
+async function getRandomMeal(){
+  const APIURL = "https://www.themealdb.com/api/json/v1/1/random.php"
+  const resp = await fetch(APIURL);
 
-const a_text = document.getElementById("a_text");
-const b_text = document.getElementById("b_text");
-const c_text = document.getElementById("c_text");
-const d_text = document.getElementById("d_text");
+  const respData = await resp.json();
+  const rondomMeal  = respData.meals[0];
 
-const submitBtn = document.getElementById('submitbtn')
+  console.log(rondomMeal);
 
-let currentQuetion = 0;
-let score  = 0;
-
-
-loadQuetion();//initialize load
-
-function loadQuetion(){
-
-  deselectAnswer();
-
-  const currentQuizData = quizData[currentQuetion];
-
-  questionElements.innerText = currentQuizData.question;
-
-  a_text.innerText  = currentQuizData.a;
-  b_text.innerText  = currentQuizData.b;
-  c_text.innerText  = currentQuizData.c;
-  d_text.innerText  = currentQuizData.d;
-
+  addMeal(rondomMeal, true);
 
 }
 
-function getSelected(){
-  let answer = undefined;
+//TO GET MEAL BY id
+async function getMealById(id){
+  const APIURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id
+  const resp = await fetch(APIURL);
 
-  answerEls.forEach((answerEl) => {
-    if (answerEl.checked){
-      answer = answerEl.id;
-    }
-  });
+  const respData = await resp.json();
+  const meal  = respData.meals[0];
 
-  return answer;
-}
 
-//deselecct answer
-function deselectAnswer(){
-  answerEls.forEach((answerEl) => {
-    answerEl.checked = false;
-  });
+  return meal;
+
 }
 
 
-submitBtn.addEventListener('click', function(){
-  const answer = getSelected();
-
-  if(answer){
-    if(answer === quizData[currentQuetion].correct){
-      score = score + 1;
-      console.log(score)
-    }
+// TO DSIPLAY RANDOM MEALS IN SCREEN
 
 
-    currentQuetion++;
+function addMeal(mealData, rondom = false){
+  const meal = document.createElement('div');
+  meal.classList.add('meal');
 
-    if(currentQuetion < quizData.length){
-      loadQuetion();
+
+
+  meal.innerHTML = `
+    <div class="meal-header">
+        ${rondom ? `
+          <span class="random">
+              Random Recipe
+          </span>
+        ` : ""}
+
+        <span class="heart">
+            <i class="fa-heart far"></i>
+        </span>
+        <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" >
+    </div>
+    <div class="meal-body">
+        <h4>${mealData.strMeal}</h4>
+
+    </div>
+  `;
+
+  meals.appendChild(meal);
+
+  const btn = meal.querySelector(".meal-header .heart .fa-heart");
+  btn.addEventListener("click", (e) => {
+
+    e.target.classList.toggle("far");
+    e.target.classList.toggle("fas")
+
+    if(btn.classList.contains('fas')){
+      addMealToLS(mealData.idMeal)
+      fetchFavMeals();
     }else{
-
-      quiz.innerHTML = `
-      <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
-
-          <button class="result" onclick="location.reload()">Reload</button>
-      `;
+      removeMealFromLS(mealData.idMeal)
     }
+
+  })
+
+}
+
+// to store favirate food
+
+function addMealToLS(mealId) {
+  const mealIds = getMealsFromLS();
+
+  localStorage.setItem('mealIds', JSON.stringify([...mealIds, mealId]));
+
+}
+
+function removeMealFromLS(mealId) {
+  const mealIds = getMealsFromLS();
+
+  localStorage.setItem('mealIds', JSON.stringify(mealIds.filter((id) => id !== mealId)));
+
+}
+
+function getMealsFromLS(){
+  const mealIds = JSON.parse(localStorage.getItem('mealIds'));
+  return mealIds === null ? [] : mealIds;
+
+}
+
+//end of the store favirate food
+
+// To get Fav Meal Info
+async function fetchFavMeals() {
+  const mealIds = getMealsFromLS();
+
+  const meals = [];
+
+  for (let i = 0; i < mealIds.length; i++) {
+    const mealId = mealIds[i];
+
+    const meal = await getMealById(mealId);
+
+    addMealToFav(meal);
   }
 
+  // Add Then To Screen
 
-});
+}
 
