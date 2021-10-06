@@ -1,9 +1,14 @@
 
 getRandomMeal();
 
+
+const FavContainer = document.getElementById('fav-meals')
+
+const showbtn = document.getElementsByClassName("show")
+
+
+
 fetchFavMeals();
-
-
 // TO GET RANDOM MEAL DATA
 async function getRandomMeal(){
   const APIURL = "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -42,10 +47,20 @@ function addMeal(mealData, rondom = false){
 
 
   meal.innerHTML = `
+    <div class="meal-body">
+      <div class="title">
+        <h4>${mealData.strMeal}</h4>
+        <button class="show">Recipe</button>
+      </div>
+      <div class="recipe d-none">
+          <p class="recipe-intra">${mealData.strInstructions}</p>
+      </div>
+    </div>
     <div class="meal-header">
         ${rondom ? `
           <span class="random">
               Random Recipe
+
           </span>
         ` : ""}
 
@@ -54,13 +69,26 @@ function addMeal(mealData, rondom = false){
         </span>
         <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" >
     </div>
-    <div class="meal-body">
-        <h4>${mealData.strMeal}</h4>
 
-    </div>
   `;
 
   meals.appendChild(meal);
+
+  showbtn[0].addEventListener("click", () => {
+    const recipePara = document.querySelector(".recipe");
+    recipePara.classList.remove('d-none');
+
+    const box = document.querySelector('.recipe-intra');
+
+    const height = box.offsetHeight;
+
+    recipePara.style.height = height;
+
+
+
+
+  })
+
 
   const btn = meal.querySelector(".meal-header .heart .fa-heart");
   btn.addEventListener("click", (e) => {
@@ -70,12 +98,19 @@ function addMeal(mealData, rondom = false){
 
     if(btn.classList.contains('fas')){
       addMealToLS(mealData.idMeal)
-      fetchFavMeals();
+
     }else{
       removeMealFromLS(mealData.idMeal)
     }
 
+
+    fetchFavMeals()
+
+
   })
+
+
+
 
 }
 
@@ -83,6 +118,7 @@ function addMeal(mealData, rondom = false){
 
 function addMealToLS(mealId) {
   const mealIds = getMealsFromLS();
+
 
   localStorage.setItem('mealIds', JSON.stringify([...mealIds, mealId]));
 
@@ -96,7 +132,15 @@ function removeMealFromLS(mealId) {
 }
 
 function getMealsFromLS(){
+
+
+
   const mealIds = JSON.parse(localStorage.getItem('mealIds'));
+
+  if(mealIds){
+    mealIds.reverse()
+  }
+
   return mealIds === null ? [] : mealIds;
 
 }
@@ -105,6 +149,10 @@ function getMealsFromLS(){
 
 // To get Fav Meal Info
 async function fetchFavMeals() {
+
+  //clear the container
+  FavContainer.innerHTML = '';
+
   const mealIds = getMealsFromLS();
 
   const meals = [];
@@ -121,3 +169,37 @@ async function fetchFavMeals() {
 
 }
 
+
+
+// DISPLAY MEALS IN FAV LIST
+function addMealToFav(mealData){
+  const FavMeal = document.createElement('li');
+
+
+
+
+  FavMeal.innerHTML = `
+
+    <img
+    src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+    <span class="fav-meal-name">${mealData.strMeal}</span>
+    <button class="clear"><i class="fas fa-times-circle"></i></button>
+
+  `;
+
+  const btn = FavMeal.querySelector('.clear');
+
+  btn.addEventListener('click', () => {
+    removeMealFromLS(mealData.idMeal);
+
+    fetchFavMeals()
+  })
+
+
+  FavContainer.appendChild(FavMeal);
+
+
+
+
+
+}
