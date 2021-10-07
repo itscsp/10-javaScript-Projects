@@ -1,11 +1,17 @@
 
 getRandomMeal();
 
-
+const mealsEl = document.getElementById('meals')
 const FavContainer = document.getElementById('fav-meals')
 
-const showbtn = document.getElementsByClassName("show")
 
+const searchTerm = document.getElementById("searchTerm")
+const searchBtn = document.getElementById("search")
+
+const mealPopup = document.getElementById('meal-popup');
+const popupCloseBtn = document.getElementById('closePopup') 
+
+const mealInfoEL = document.getElementById("meal-info");
 
 
 fetchFavMeals();
@@ -33,7 +39,17 @@ async function getMealById(id){
 
 
   return meal;
+}
 
+//GET MEAL BY SEARCH
+async function getMealBySearch(term) {
+  const APIURL = "https://www.themealdb.com/api/json/v1/1/search.php?s="+term
+  const resp = await fetch(APIURL);
+
+  const respData = await resp.json();
+  const meals = respData.meals;
+
+  return meals;
 }
 
 
@@ -50,11 +66,9 @@ function addMeal(mealData, rondom = false){
     <div class="meal-body">
       <div class="title">
         <h4>${mealData.strMeal}</h4>
-        <button class="show">Recipe</button>
+		<button id="show">Show Recipe</buttton>
       </div>
-      <div class="recipe d-none">
-          <p class="recipe-intra">${mealData.strInstructions}</p>
-      </div>
+
     </div>
     <div class="meal-header">
         ${rondom ? `
@@ -71,23 +85,27 @@ function addMeal(mealData, rondom = false){
     </div>
 
   `;
-
-  meals.appendChild(meal);
-
-  showbtn[0].addEventListener("click", () => {
-    const recipePara = document.querySelector(".recipe");
-    recipePara.classList.remove('d-none');
-
-    const box = document.querySelector('.recipe-intra');
-
-    const height = box.offsetHeight;
-
-    recipePara.style.height = height;
-
-
-
-
+  
+  meal.addEventListener("click", () => {
+	  showMealInfo(mealData)
   })
+
+   mealsEl.appendChild(meal);
+
+  // showbtn[0].addEventListener("click", () => {
+  //   const recipePara = document.querySelector(".recipe");
+  //   recipePara.classList.remove('d-none');
+
+  //   const box = document.querySelector('.recipe-intra');
+
+  //   const height = box.offsetHeight;
+
+  //   recipePara.style.height = height;
+
+
+
+
+  // })
 
 
   const btn = meal.querySelector(".meal-header .heart .fa-heart");
@@ -194,12 +212,80 @@ function addMealToFav(mealData){
 
     fetchFavMeals()
   })
+  
+  FavMeal.addEventListener("click", () => {
+	  showMealInfo(mealData)
+  })
 
 
   FavContainer.appendChild(FavMeal);
 
+}
 
 
+// SEARCH FUNCTIONALITY
+
+searchBtn.addEventListener('click', async() => {
+  mealsEl.innerHTML = '';
+  const search = searchTerm.value;
+  const meals = await getMealBySearch(search);
+
+  if(meals){
+
+    meals.forEach((meal) => {
+      addMeal(meal);
+    })
+  }
+
+})
 
 
+popupCloseBtn.addEventListener('click', () => {
+	mealPopup.classList.add('hidden')
+});
+
+
+function showMealInfo(mealData){
+	
+	//clean at first
+	mealInfoEL.innerHTML = '';
+	
+	//update the Meal Info
+	const mealEl = document.createElement('div');
+	
+	const ingredient = [];
+	// get ingredient and measure
+		
+	for(let i =1; i <= 20; i++){
+		if(mealData['strIngredient'+i]){
+			ingredient.push(`${mealData['strIngredient'+i]} - ${mealData['strMeasure'+i]}`);
+		}else{
+			break;
+		}
+	}
+	
+	console.log(ingredient);
+	
+	mealEl.innerHTML = `
+		<h3>${mealData.strMeal}</h3>
+		<img src="${mealData.strMealThumb}" alt="">
+	
+	
+		<p>${mealData.strInstructions}</p>
+		<h3>Ingredients</h3>
+		
+		<ul>
+			${ingredient.map(
+				(ing) => `
+				<li>${ing}</li>
+				`
+				)
+				.join("")}
+		</ul>
+	`
+	
+	mealInfoEL.appendChild(mealEl);
+	
+	//show popUp
+	mealPopup.classList.remove('hidden')
 }

@@ -15,8 +15,8 @@
         <header>
             <h1 style="color: rgba(252,70,107,1)">CSP <br /> Recipe</h1>
             <form class="search-bar">
-                <input type='text' placeholder="Search Recipe" />
-                <i class="fab fa-searchengin btn-search"></i>
+                <input type='text' placeholder="Search Recipe" id="searchTerm" />
+                <i class="fab fa-searchengin btn-search" id="search"></i>
             </form>
         </header>
 
@@ -51,8 +51,21 @@
             </div> -->
         </div>
 
-    </div>
+       
 
+    </div>
+	
+	
+	<div class="popup-container hidden" id="meal-popup">
+		 <div class="popup">
+			
+				<button id="closePopup" class="close-popup"><i class="fas fa-times"></i></button>
+				<div class="meal-info" id="meal-info">
+					
+				</div>
+			
+		</div>
+	</div>
 
     <script src="script.js"></script>
 </body>
