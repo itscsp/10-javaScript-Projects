@@ -1,0 +1,111 @@
+/* importing fot from google fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background:#7BDAF3;
+    background-image: liner-gradient(315deg, #7BDAF3 0%, #10abd6 100%);
+    font-family: 'Poppins', sans-serif;
+
+
+}
+
+.top-header{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.heading{
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+.heading .pro-heading{
+    color:#02be2b;
+    font-weight:600;
+}
+
+.container{
+     margin:auto;
+    align-items:center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(228, 228, 228);
+    width: 400px;
+    height: 400px;
+}
+
+.addNotes{
+    background: #02be2b;
+    cursor: pointer;
+    border:none;
+    padding: 17px 34px;
+
+    margin: 10px;
+    font-size: 22px;
+    border-radius: 5px;
+    color: white;
+
+}
+
+.addedNotes {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container .tools {
+    background: #02be2b;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+
+
+.container .tools button{
+    background:transparent;
+    border:none;
+    font-size: 1rem;
+    color: white;
+    padding: 5px;
+}
+
+.container .main-conatiner{
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    /* background-color:#eee; */
+}
+
+textarea{
+    background-color:#eee;
+
+    outline: none;
+    border: none;
+    padding: 10px;
+    height:85%;
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+
+
+.notes .hidden{
+    display: none;
+}
+
