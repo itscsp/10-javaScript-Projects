@@ -1,0 +1,89 @@
+/* importing fot from google fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background:#f5f5f5;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+.heading{
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+.heading .pro-heading{
+    color:#02be2b;
+    font-weight:600;
+}
+
+.container{
+    border-radius: 10px;
+
+}
+
+h1{
+    text-align: center;
+    color: rgb(179, 131, 226);
+    font-size: 10rem;
+    opacity: 0.4 ;
+}
+
+form{
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input{
+    padding: 1rem 2rem;
+    display: block;
+    width: 100%;
+    font-size: 2rem;
+    border: none;
+
+}
+
+
+.input::placeholder {
+    color: #b5b5b5;
+}
+
+.todos{
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.todos li{
+    border-top: 1px solid #e5e5e5;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+.todos li.completed {
+    text-decoration: line-through;
+    color: #e5e5e5  ;
+}
+
+small{
+    color: #b5b5b5;
+    margin-top: 3rem;
+    text-align: center;
+}
+
