@@ -1,0 +1,74 @@
+/* importing fot from google fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: #373b78;
+    width: 80%;
+    margin: 20px auto;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    background: #5433FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0027ff, #4c5cdd, #5433FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0027ff, #4c5cdd, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+header{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(216, 216, 216);
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: center;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+
+#canvas {
+    border: 1px solid #eee;
+    background: #fff;
+    margin: auto;
+    display: flex;
+    border-radius: 10px;
+}
+
+.toolbox {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.toolbox div{
+
+        display: flex;
+        gap: 15px;
+
+}
+
+.toolbox button {
+    width: 50px;
+    background: #5437fcd1;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 24px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+#color{
+
+        width: 135px;
+        height: 100%;
+
+}
