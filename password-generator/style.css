@@ -1,0 +1,122 @@
+/* importing fot from google fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: #373b78;
+    width: 80%;
+    margin: 20px auto;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    background: #5433FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0027ff, #4c5cdd, #5433FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0027ff, #4c5cdd, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+header{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(216, 216, 216);
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: center;
+
+}
+
+
+
+#pw-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(216 216 216);
+    padding: 20px;
+}
+
+.pw{
+	border-radius:5px;
+    padding: 15px;
+    font-size: 18px;
+    background: #eee;
+    position: relative;
+    text-align: center;
+}
+
+#copybtn{
+	opacity:0;
+	
+	transition:opacity 0.2s ease;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px 7px;
+    cursor: pointer;
+    border: none;
+    background: #0000ff6b;
+    font-weight: 700;
+    color: white;
+    border-radius: 0px 0px 0px 5px;
+
+}
+
+.pw:hover #copybtn{
+	opacity:1;
+}
+
+.options{
+	    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 50%;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 10px;
+    margin: auto;
+}
+
+.options .form-control {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #eee;
+    flex: 270px;
+}
+
+.length-control{
+	
+    text-align: center;
+    margin: 20px 0px;
+    font-size: 22px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	gap:10px;
+	
+	}
+	
+.length-control input{
+	padding:5px;
+	font-size:22px;
+}
+
+#generate{
+	display: block;
+    margin: 20px auto;
+    padding: 7px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: #5337fc;
+    color: white;
+	cursor:pointer;
+}
+
+span{
+	    display: flex;
+    justify-content: center;
+    margin: 0px;
+}

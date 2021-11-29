@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Password Generator</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="heading">
+        10 JS Project |<span class="pro-heading"> Password Generator</span>
+      </h1>
+
+    </header>
+
+    <main id="pw-container">
+        <div class="pw-header">
+          <div class="pw" id="pw" style="color:#999">
+			<div id="pwEl">
+			Password maximum length 40
+			</div>
+			<button id="copybtn">copy</div>
+        </div>
+		<div class="pw-body">
+			<div class="length-control">
+				<label for="length">Enter Password Length :</label>
+				<input id="length" type="number" min="5" max="40"/>
+				
+			</div>
+			
+			<div class="options">
+			
+				<div class="form-control">
+					
+					<input id="upper" type="checkbox" />
+					<label for="upper">Include uppercase letters</label>
+				</div>
+				
+				<div class="form-control">
+					
+					<input id="lower" type="checkbox" />
+					<label for="lower">Include lowercase letters</label>
+				</div>
+				
+				<div class="form-control">
+					
+					<input id="number" type="checkbox" />
+					<label for="number">Include numbers</label>
+				</div>
+				
+				<div class="form-control">
+					
+					<input id="symbol" type="checkbox" />
+					<label for="symbol">Include symbols</label>
+				</div>
+				
+				
+			</div>
+			<button id="generate">Generator Password</div>
+		</div>
+
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
