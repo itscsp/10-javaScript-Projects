@@ -1,0 +1,88 @@
+/* importing fot from google fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: #373b78;
+    width: 80%;
+    margin: 20px auto;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    background: #5433FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0027ff, #4c5cdd, #5433FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0027ff, #4c5cdd, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+header{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(216, 216, 216);
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: center;
+
+}
+
+.form-search input{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.form-search input::placeholder{
+    font-size: 18px;
+}
+
+main{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(216, 216, 216);
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: center;
+    gap:10px;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+
+}
+
+.weather {
+    min-width: 300px;
+    background: #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+
+}
+
+.weather h2{
+    color: #5238fac4;
+}
+
+.weather .loc{
+    text-transform: capitalize;
+    color:rgb(238, 67, 96);
+}
+
+small.type {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background: #8181f7;
+    color: white;
+    border-radius: 0px 5px 0px 5px;
+    font-weight: bold;
+}
